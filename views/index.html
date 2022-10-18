@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./static/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/style.css">
+    <script type="text/javascript" src="./static/jquery.min.js"></script>
+    <script type="text/javascript" src="./static/bootstrap.min.js"></script>
+</head>
+<body>
+    <h1>任务列表</h1>
+    <div class="row" style="margin: 10px 0 0 10px;">
+        <a href="/add" class="btn btn-success">新增任务</a>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>编号</th>
+                <th>定时时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $k,$v := .crons}}
+            <tr>
+                <th scope="row">1</th>
+                <td>{{$v.UniueCode}}</td>
+                <td>{{$v.CronTime}}</td>
+                <td>
+                    {{if $v.Status}}
+                        启用
+                    {{else}}
+                        禁用
+                    {{end}}
+                </td>、
+                <td>
+                    {{if $v.Status}}
+                        <button class="btn btn-danger" onclick="changeStatus({{$v.UniueCode}}, 0)">禁用</button>
+                    {{else}}
+                        <button class="btn btn-success" onclick="changeStatus({{$v.UniueCode}}, 1)">启用</button>
+                    {{end}}
+                </td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    $(function () {
+
+    })
+    function changeStatus(unique_code, status){
+        $.ajax({
+            url:"/modify",
+            type: "POST",
+            data: {
+                uniue_code:unique_code,
+                status:status,
+            },
+            dataType: "json",
+            async: false,  // 默认是true
+            success:function(result){
+                alert(result.msg);
+                window.location.reload();
+            }});
+    }
+</script>
+</html>

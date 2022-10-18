@@ -7,6 +7,8 @@
 
 *  使用 go 开发的脚本计划任务
 
+### 项目地址
+https://gitee.com/lhf2008/go-cron.git
 
 ### 使用方法
 
