@@ -8,7 +8,9 @@ import (
 	"time"
 )
 
-func Index(ctx iris.Context)  {
+type IndexController struct {}
+
+func (index *IndexController) Index(ctx iris.Context)  {
 	var crons []db.CronModel
 	//db.Db.Where("status=1").Find(&crons)
 	db.Db.Find(&crons)
@@ -17,11 +19,11 @@ func Index(ctx iris.Context)  {
 	ctx.View("index.html")
 }
 
-func Add(ctx iris.Context)  {
+func (index *IndexController) Add(ctx iris.Context)  {
 	ctx.View("add.html")
 }
 
-func Save(ctx iris.Context)  {
+func (index *IndexController) Save(ctx iris.Context)  {
 	CronTime := ctx.FormValue("CronTime")
 	command := ctx.FormValue("command")
 	cron_type, _ := ctx.PostValueInt("type")
@@ -38,7 +40,7 @@ func Save(ctx iris.Context)  {
 	ctx.Redirect("/")
 }
 
-func Modify(ctx iris.Context)  {
+func (index *IndexController) Modify(ctx iris.Context)  {
 	uniue_code := ctx.PostValue("uniue_code")
 	status,err := ctx.PostValueInt("status")
 	if err!=nil{
