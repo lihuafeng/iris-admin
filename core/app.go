@@ -1,37 +1,27 @@
 package core
 
 import (
-	"github.com/deatil/doak-cron/controller/Admin"
+	Controller "github.com/deatil/doak-cron/controller"
 	"github.com/kataras/iris/v12"
-	"github.com/deatil/doak-cron/controller"
 )
 
 func Run()  {
 	//Lris
 	httpapp := iris.Default()
 	httpapp.Logger().SetLevel("error")
-	httpapp.OnErrorCode(iris.StatusNotFound, notFound)
-	httpapp.OnErrorCode(iris.StatusInternalServerError, internalServerError)
 	httpapp.Use(myMiddleware)
 	// 加载视图模板地址
 	httpapp.RegisterView(iris.HTML("./views", ".html"))
 	//提供静态文件服务
 	httpapp.HandleDir("/static", "./static")
 
+	//加载路由
+	Controller.RouterHandler(httpapp)
+
 	//前置操作
 	httpapp.Use(before)
 	//后置操作
 	//httpapp.Use(after)
-
-	//路由
-	httpapp.Get("/", new(controller.IndexController).Index)
-	httpapp.Get("/add", new(controller.IndexController).Add)
-	httpapp.Post("/save", new(controller.IndexController).Save)
-	httpapp.Post("/modify", new(controller.IndexController).Modify)
-
-	httpapp.PartyFunc("/admin", func(admin iris.Party) {
-		admin.Get("/", new(Admin.IndexController).Index).Name = "admin"
-	})
 
 	// Listens and serves incoming http requests
 	// on http://localhost:8080.
@@ -63,14 +53,6 @@ func mainHandler(ctx iris.Context) {
 	ctx.HTML("<br/> Info: " + info)
 
 	ctx.Next() // execute the "after".
-}
-
-func notFound(ctx iris.Context)  {
-	ctx.View("errors/404.html")
-}
-
-func internalServerError(ctx iris.Context) {
-	ctx.WriteString("Oups something went wrong, try again")
 }
 
 func myMiddleware(ctx iris.Context) {
