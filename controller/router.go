@@ -20,11 +20,11 @@ func RouterHandler(app *iris.Application)  {
 	})
 }
 
-
+//404
 func notFound(ctx iris.Context)  {
 	ctx.View("errors/404.html")
 }
-
+//500
 func internalServerError(ctx iris.Context) {
 	ctx.WriteString("Oups something went wrong, try again")
 }
