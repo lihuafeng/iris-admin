@@ -1,8 +1,10 @@
 package core
 
 import (
+	Config "github.com/deatil/doak-cron/config"
 	Controller "github.com/deatil/doak-cron/controller"
 	"github.com/kataras/iris/v12"
+	"strconv"
 )
 
 func Run()  {
@@ -25,7 +27,7 @@ func Run()  {
 
 	// Listens and serves incoming http requests
 	// on http://localhost:8080.
-	httpapp.Run(iris.Addr(":8080"))
+	httpapp.Run(iris.Addr(":"+strconv.Itoa(Config.SERVER_PORT)))
 }
 
 func before(ctx iris.Context)  {

@@ -48,6 +48,11 @@ func init()  {
 
 }
 
+func New() *gorm.DB {
+	return Db
+}
+
+
 //自定义表名
 func (cm *CronModel) TableName() string {
 	return "cron"
