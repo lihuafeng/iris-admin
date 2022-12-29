@@ -28,7 +28,20 @@ func (cm *CronModel) TableName() string {
 
 //用户表结构
 type AdminModel struct {
+	Id int `gorm:"not null" json:"id"`
+	Name string `gorm:"not null" json:"name"`
+	Email string `gorm:"not null" json:"email"`
+	Password string `gorm:"not null" json:"password"`
+	EmailVerify int `gorm:"not null" json:"email_verify"`
+	Status int `gorm:"not null" json:"status"`
+	Rank int `gorm:"not null" json:"rank"`
+	Group_id int `gorm:"not null" json:"group_id"`
+	CreatedAt string `gorm:"null" json:"created_at"`
+}
 
+//自定义表名
+func (admin *AdminModel) TableName() string {
+	return "admin"
 }
 
 func init()  {
