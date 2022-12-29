@@ -22,4 +22,8 @@ func (user *UserController) DoLogin(ctx iris.Context)  {
 		ctx.Redirect("/admin/login")
 	}
 }
+//个人信息页面
+func (user *UserController) Profile(ctx iris.Context)  {
+	ctx.View("admin/user/profile.html")
+}
 

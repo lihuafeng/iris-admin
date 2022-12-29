@@ -30,6 +30,9 @@ func RouterHandler(app *iris.Application)  {
 	app.PartyFunc("/admin", func(admin iris.Party) {
 		admin.Get("/login", new(Admin.UserController).Login).Name = "admin.login"
 		admin.Post("/login", new(Admin.UserController).DoLogin).Name = "admin.doLogin"
+
+		admin.Get("/profile", new(Admin.UserController).Profile)
+		//后台首页
 		admin.Get("/", new(Admin.IndexController).Index).Name = "admin"
 	})
 	//api

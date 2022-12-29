@@ -7,6 +7,7 @@ import (
 
 var Db *gorm.DB
 
+//定时任务表结构
 type CronModel struct {
 	Id int `gorm:"not null" json:"id"`
 	UniueCode string  `gorm:"not null" json:"uniue_code"`
@@ -18,6 +19,16 @@ type CronModel struct {
 	CreatedAt string `gorm:"null" json:"created_at"`
 	LastRuntime int `gorm:"not null" json:"last_runtime"`
 	NextRuntime int `gorm:"not null" json:"next_runtime"`
+}
+
+//自定义表名
+func (cm *CronModel) TableName() string {
+	return "cron"
+}
+
+//用户表结构
+type AdminModel struct {
+
 }
 
 func init()  {
@@ -50,11 +61,5 @@ func init()  {
 
 func New() *gorm.DB {
 	return Db
-}
-
-
-//自定义表名
-func (cm *CronModel) TableName() string {
-	return "cron"
 }
 
