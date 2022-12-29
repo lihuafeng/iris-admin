@@ -1,11 +1,14 @@
 package Controller
 
 import (
+	"github.com/dchest/captcha"
+	Config "github.com/deatil/doak-cron/config"
 	"github.com/deatil/doak-cron/controller/Admin"
 	"github.com/deatil/doak-cron/controller/Api"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/core/router"
 	"github.com/kataras/iris/v12/versioning"
+	"time"
 )
 
 func RouterHandler(app *iris.Application)  {
@@ -17,8 +20,16 @@ func RouterHandler(app *iris.Application)  {
 	app.Get("/add", new(IndexController).Add)
 	app.Post("/save", new(IndexController).Save)
 	app.Post("/modify", new(IndexController).Modify)
+	//验证码
+	app.Get("/captcha", func(ctx iris.Context) {
+		captchaId := captcha.NewLen(Config.CAPTCHA)
+		ctx.SetCookieKV("captchaId", captchaId, iris.CookieExpires(time.Duration(60)*time.Second))
+		_ = captcha.WriteImage(ctx, captchaId, 130, 40)
+	})
 	//admin
 	app.PartyFunc("/admin", func(admin iris.Party) {
+		admin.Get("/login", new(Admin.UserController).Login).Name = "admin.login"
+		admin.Post("/login", new(Admin.UserController).DoLogin).Name = "admin.doLogin"
 		admin.Get("/", new(Admin.IndexController).Index).Name = "admin"
 	})
 	//api

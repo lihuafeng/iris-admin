@@ -1,14 +1,20 @@
-## go版本的通用计划任务
+## iris框架做的后台系统
 
-使用 go 构建的脚本计划任务，支持脚本和 `curl` 请求两种方式
+iris框架做的后台系统
 
 
 ### 项目介绍
 
-*  使用 go 开发的脚本计划任务
+*  iris框架做的后台管理系统
 
 ### 项目地址
 https://gitee.com/lhf2008/go-cron.git
+
+### iris项目地址
+https://github.com/kataras/iris/tree/master/_examples
+
+###IRIS文档地址
+https://www.topgoer.com/Iris/
 
 ### 使用方法
 
@@ -62,4 +68,4 @@ main.exe cron ver
 
 ### 版权
 
-*  该系统所属版权归 deatil(https://github.com/deatil) 所有。
+*  该系统所属版权归 lhf008(https://gitee.com/lhf2008) 所有。

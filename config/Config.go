@@ -4,6 +4,9 @@ const (
 	SERVER_NAME = "lris-admin"
 	SERVER_PORT = 8080
 
+	//验证码长度
+	CAPTCHA = 4
+
 	SERVER_TIME_FORMAT = "2006-01-02 15:04:05"
 	SERVER_CHARSET     = "UTF-8"
 
