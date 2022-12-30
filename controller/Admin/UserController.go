@@ -44,7 +44,7 @@ func (user *UserController) DoLogin(ctx iris.Context)  {
 		//写入session
 		session := sess.Start(ctx)
 		user_json,_ := json.Marshal(user)
-		session.Set("userInfo", user_json)
+		session.Set("userInfo", string(user_json))
 
 		ctx.Redirect("/admin")
 		return
