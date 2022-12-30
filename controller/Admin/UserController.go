@@ -2,10 +2,18 @@ package Admin
 
 import (
 	"crypto/md5"
+	"encoding/json"
 	"fmt"
 	"github.com/dchest/captcha"
 	"github.com/deatil/doak-cron/pkg/db"
 	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/sessions"
+	"time"
+)
+
+var (
+	cookieNameForSessionID = "mycookiesessionnameid"
+	sess                   = sessions.New(sessions.Config{Cookie: cookieNameForSessionID})
 )
 
 type UserController struct {}
@@ -27,6 +35,17 @@ func (user *UserController) DoLogin(ctx iris.Context)  {
 			ctx.Redirect("/admin/login")
 			return
 		}
+		//更新登录时间
+		row := db.Db.Exec("update admin set last_login_time=? where id=?", time.Now().Unix(), user.Id)
+		if row.Error != nil{
+			ctx.Redirect("/admin/login")
+			return
+		}
+		//写入session
+		session := sess.Start(ctx)
+		user_json,_ := json.Marshal(user)
+		session.Set("userInfo", user_json)
+
 		ctx.Redirect("/admin")
 		return
 	}else{

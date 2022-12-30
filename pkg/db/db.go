@@ -37,6 +37,7 @@ type AdminModel struct {
 	Rank int `gorm:"not null" json:"rank"`
 	Group_id int `gorm:"not null" json:"group_id"`
 	CreatedAt string `gorm:"null" json:"created_at"`
+	LastLoginTime string `form:"last_login_time" `
 }
 
 //自定义表名
