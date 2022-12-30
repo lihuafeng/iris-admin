@@ -22,14 +22,16 @@ func (user *UserController) DoLogin(ctx iris.Context)  {
 		password := ctx.FormValue("password")
 		var user db.AdminModel
 		md5_password :=[]byte(password)
-		db.Db.First(&user, "name=? and password=?", username, fmt.Sprintf("%x",md5.Sum(md5_password)))
-		fmt.Print(user)
-		if user != (db.AdminModel{}){
+		res := db.Db.First(&user, "name=? and password=?", username, fmt.Sprintf("%x",md5.Sum(md5_password)))
+		if res.Error != nil{
 			ctx.Redirect("/admin/login")
+			return
 		}
 		ctx.Redirect("/admin")
+		return
 	}else{
 		ctx.Redirect("/admin/login")
+		return
 	}
 }
 //个人信息页面
