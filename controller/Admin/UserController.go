@@ -53,6 +53,17 @@ func (user *UserController) DoLogin(ctx iris.Context)  {
 		return
 	}
 }
+
+//退出登录
+func (user *UserController) LoginOut(ctx iris.Context)  {
+	session := sess.Start(ctx)
+	session.Delete("userInfo")
+
+	ctx.Redirect("/admin/login")
+	return
+}
+
+
 //个人信息页面
 func (user *UserController) Profile(ctx iris.Context)  {
 	ctx.View("admin/user/profile.html")
