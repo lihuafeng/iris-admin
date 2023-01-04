@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/dchest/captcha"
+	Config "github.com/deatil/doak-cron/config"
 	"github.com/deatil/doak-cron/pkg/db"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/sessions"
@@ -13,7 +14,10 @@ import (
 
 var (
 	cookieNameForSessionID = "mycookiesessionnameid"
-	sess                   = sessions.New(sessions.Config{Cookie: cookieNameForSessionID})
+	sess                   = sessions.New(sessions.Config{
+		Cookie: cookieNameForSessionID,
+		Expires:Config.SESSION_EXPIRE_TIME,
+	})
 )
 
 type UserController struct {}
