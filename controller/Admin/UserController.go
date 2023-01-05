@@ -70,6 +70,20 @@ func (user *UserController) LoginOut(ctx iris.Context)  {
 
 //个人信息页面
 func (user *UserController) Profile(ctx iris.Context)  {
+	session := sess.Start(ctx)
+	user_json := session.Get("userInfo")
+	if user_json != nil{
+		var userInfo db.AdminModel
+		err := json.Unmarshal([]byte(user_json.(string)), &userInfo)
+		if err != nil{
+			ctx.Redirect("/admin/login")
+			return
+		}
+		ctx.ViewData("userInfo", userInfo)
+	}else{
+		ctx.Redirect("/admin/login")
+		return
+	}
 	ctx.View("admin/user/profile.html")
 }
 
