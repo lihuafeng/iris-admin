@@ -7,6 +7,7 @@ import (
 	"github.com/dchest/captcha"
 	Config "github.com/deatil/doak-cron/config"
 	"github.com/deatil/doak-cron/pkg/db"
+	"github.com/deatil/doak-cron/pkg/email"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/sessions"
 	"time"
@@ -85,5 +86,16 @@ func (user *UserController) Profile(ctx iris.Context)  {
 		return
 	}
 	ctx.View("admin/user/profile.html")
+}
+
+func (user *UserController) SendEmailCode(ctx iris.Context){
+	email_account := ctx.PostValue("email")
+	fmt.Print(email_account)
+	err := email.SendMail()
+	email.SendMailTest()
+	if err != nil{
+		ctx.JSON(iris.Map{"code":1,"msg":"发送失败"})
+	}
+	ctx.JSON(iris.Map{"code":0,"msg":"发送成功"})
 }
 

@@ -9,6 +9,8 @@ const (
 	//验证码长度
 	CAPTCHA = 4
 
+	EMAIL_CODE_LENGTH = 4
+
 	SESSION_EXPIRE_TIME = time.Hour
 
 	SERVER_TIME_FORMAT = "2006-01-02 15:04:05"
