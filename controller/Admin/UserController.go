@@ -90,12 +90,13 @@ func (user *UserController) Profile(ctx iris.Context)  {
 
 func (user *UserController) SendEmailCode(ctx iris.Context){
 	email_account := ctx.PostValue("email")
-	fmt.Print(email_account)
-	err := email.SendMail()
-	email.SendMailTest()
+	username := ctx.PostValue("username")
+	err := email.SendMail(username, email_account, "绑定邮箱验证", "code")
 	if err != nil{
 		ctx.JSON(iris.Map{"code":1,"msg":"发送失败"})
+		return
 	}
 	ctx.JSON(iris.Map{"code":0,"msg":"发送成功"})
+	return
 }
 
