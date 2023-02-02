@@ -1,6 +1,7 @@
 package cacheRedis
 
 import (
+	"context"
 	"github.com/redis/go-redis/v9"
 	"sync"
 )
@@ -18,6 +19,10 @@ func Instance() *redis.Client {
 		}
 		redisClient = redis.NewClient(Options)
 	})
-
+	var ctx = context.Background()
+	_, err := redisClient.Ping(ctx).Result()
+	if err != nil{
+		panic(err)
+	}
 	return redisClient
 }

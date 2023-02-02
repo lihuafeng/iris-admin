@@ -1,8 +1,10 @@
 package email
 
 import (
+	"context"
 	"fmt"
 	Config "github.com/deatil/doak-cron/config"
+	"github.com/deatil/doak-cron/pkg/cacheRedis"
 	"io/ioutil"
 	"math/rand"
 	"net/smtp"
@@ -67,6 +69,10 @@ func emailBlade(username string, blade_type string) []byte  {
 	txt,err := ioutil.ReadFile(fmt.Sprintf("./views/emailblade/%s.html", blade_type)) //读取文件
 	if blade_type =="code"{
 		code := RandCode(6)
+		//code保存到redis
+		var ctx = context.Background()
+		cacheRedis.Instance().Set(ctx, username + "_emailcode", code, 3*time.Minute)
+
 		txt_str := fmt.Sprintf(string(txt), username, code)
 		txt = []byte(txt_str)
 	}

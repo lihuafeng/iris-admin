@@ -33,6 +33,7 @@ func RouterHandler(app *iris.Application)  {
 		admin.Get("/loginout", new(Admin.UserController).LoginOut).Name = "admin.loginOut"
 
 		admin.Get("/profile", new(Admin.UserController).Profile) // 个人信息
+		admin.Post("/profile", new(Admin.UserController).SaveProfile) // 保存个人信息
 		admin.Post("/send_email_code", new(Admin.UserController).SendEmailCode) // 发送邮箱验证码
 		//后台首页
 		admin.Get("/", new(Admin.IndexController).Index).Name = "admin"

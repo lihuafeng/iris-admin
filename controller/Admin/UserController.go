@@ -1,11 +1,13 @@
 package Admin
 
 import (
+	"context"
 	"crypto/md5"
 	"encoding/json"
 	"fmt"
 	"github.com/dchest/captcha"
 	Config "github.com/deatil/doak-cron/config"
+	"github.com/deatil/doak-cron/pkg/cacheRedis"
 	"github.com/deatil/doak-cron/pkg/db"
 	"github.com/deatil/doak-cron/pkg/email"
 	"github.com/kataras/iris/v12"
@@ -87,7 +89,38 @@ func (user *UserController) Profile(ctx iris.Context)  {
 	}
 	ctx.View("admin/user/profile.html")
 }
+//保存个人信息
+func (user *UserController) SaveProfile(ctx iris.Context)  {
+	session := sess.Start(ctx)
+	user_json := session.Get("userInfo")
+	if user_json ==nil{
+		ctx.Redirect("/admin/login")
+		return
+	}
+	var userInfo db.AdminModel
+	err := json.Unmarshal([]byte(user_json.(string)), &userInfo)
+	if err != nil{
+		ctx.Redirect("/admin/login")
+		return
+	}
+	//接收参数
+	email_account := ctx.PostValue("email")
+	username := ctx.PostValue("username")
+	email_code := ctx.PostValue("email_code")
 
+	var ctxc = context.Background()
+	code,_ := cacheRedis.Instance().Get(ctxc, username + "_emailcode").Result()
+	if code == email_code{
+		cacheRedis.Instance().Del(ctxc, username + "_emailcode")
+		//更新绑定状态
+		db.Db.Exec("update admin set email=?, email_verify=1 where id=?", email_account, userInfo.Id)
+	}
+	ctx.Redirect("/admin/profile")
+	return
+
+
+}
+//发送邮箱验证码
 func (user *UserController) SendEmailCode(ctx iris.Context){
 	email_account := ctx.PostValue("email")
 	username := ctx.PostValue("username")
@@ -99,4 +132,3 @@ func (user *UserController) SendEmailCode(ctx iris.Context){
 	ctx.JSON(iris.Map{"code":0,"msg":"发送成功"})
 	return
 }
-
