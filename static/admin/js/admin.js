@@ -97,7 +97,11 @@ jQuery( function() {
             contentType:false,
             // ContentType:"application/json",
             success:function (res) {
-                console.log(res)
+                if(res.code ===0){
+                    $(".img-avatar").attr('src', res.fileUrl);
+                    $("#creator_pic").val(res.fileUrl)
+                    lightyear.notify('图片上传成功！~', 'success', 3000, 'mdi mdi-emoticon-happy', 'top', 'center');
+                }
             }
 
 

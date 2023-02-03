@@ -16,6 +16,7 @@ func Run()  {
 	httpapp.RegisterView(iris.HTML("./views", ".html"))
 	//提供静态文件服务
 	httpapp.HandleDir("/static", "./static")
+	httpapp.HandleDir("/uploads", "./uploads")
 
 	//加载路由
 	Controller.RouterHandler(httpapp)
