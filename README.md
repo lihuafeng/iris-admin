@@ -19,7 +19,7 @@ https://www.topgoer.com/Iris/
 ### 使用方法
 1. 导入根目录下data.sql文件，修改mysql账号密码
 2. 安装包，根目录执行
-```go
+```go3wee
 go mod tidy
 ```      
 3. 根目录下执行

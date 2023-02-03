@@ -11,6 +11,7 @@ type IndexController struct {}
 
 func (index *IndexController) Index(ctx iris.Context)  {
 	check(ctx)
+	ctx.ViewData("subTitle", "后台首页")
 	ctx.ViewLayout("admin/layouts/layout.html")
 	ctx.View("admin/index/index.html")
 }
