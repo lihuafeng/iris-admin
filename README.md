@@ -17,6 +17,18 @@ https://github.com/kataras/iris/tree/master/_examples
 https://www.topgoer.com/Iris/
 
 ### 使用方法
+1. 导入根目录下data.sql文件，修改mysql账号密码
+2. 安装包，根目录执行
+```go
+go mod tidy
+```      
+3. 根目录下执行
+```go
+go run main.go
+```
+
+
+### 使用方法[以下请忽略]
 
 1. 构建对应系统的文件。交叉编译可查看文档 `/docs/go-build.md`
 
