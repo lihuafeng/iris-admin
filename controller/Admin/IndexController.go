@@ -11,6 +11,7 @@ type IndexController struct {}
 
 func (index *IndexController) Index(ctx iris.Context)  {
 	check(ctx)
+	ctx.ViewLayout("admin/layouts/layout.html")
 	ctx.View("admin/index/index.html")
 }
 //验证登录状态

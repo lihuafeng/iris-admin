@@ -11,7 +11,7 @@ import (
 )
 
 type UploadFileController struct {}
-
+//
 func (uploadFile *UploadFileController) UploadImg(ctx iris.Context)  {
 
 	res, err := ctx.UploadFormFiles("./uploads", beforeSave)
@@ -41,7 +41,7 @@ func beforeSave(ctx iris.Context, file *multipart.FileHeader) {
 	//file.Filename = time.Now().Format("20060102") + email.RandCode(5) + file.Filename
 	file.Filename = time.Now().Format("20060102") + email.RandCode(5)
 }
-
+//接收处理
 func (uploadFile *UploadFileController) UploadManual(ctx iris.Context)  {
 	// Get the file from the request.
 	file, info, err := ctx.FormFile("uploadfile")

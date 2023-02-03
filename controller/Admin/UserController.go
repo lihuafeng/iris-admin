@@ -87,6 +87,7 @@ func (user *UserController) Profile(ctx iris.Context)  {
 		ctx.Redirect("/admin/login")
 		return
 	}
+	ctx.ViewLayout("admin/layouts/layout.html")
 	ctx.View("admin/user/profile.html")
 }
 //保存个人信息
