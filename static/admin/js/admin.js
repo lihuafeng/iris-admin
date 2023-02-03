@@ -5,6 +5,7 @@
  captcha: /^[a-zA-Z0-9]{6}$/
  */
 jQuery( function() {
+    //发送验证码
     $("#sendEmailCode").bind('click',function(){
         var countTime = 60
         var email = $("#email").val();
@@ -48,6 +49,58 @@ jQuery( function() {
                 }
 
             }});
+    })
 
+    $("#change_avator").click(function(){
+        $("#avator_file").click();
+    });
+    $("#avator_file").change(function(){
+
+        //获取文件
+        // var file = $("#avator_file").prop('files')['0'];
+        // var file = document.getElementById("avator_file").files['0'];
+        //创建读取文件的对象
+        // var reader = new FileReader();
+        //创建文件读取相关的变量
+        // var imgFile;
+        //为文件读取成功设置事件
+        // reader.onload=function(e) {
+        //     var e=window.event||e;
+        //     imgFile = e.target.result;
+        //     console.log(imgFile);
+        // };
+        // var formData = new FormData();
+        // formData.append("upload", imgFile)
+        // console.log(formData)
+        //正式读取文件
+        // reader.readAsDataURL(file);
+
+        var maxSize = 2097152;
+        var fileArray = document.getElementById("avator_file").files;
+        var filesName = fileArray[0].name;
+        var filesSize = fileArray[0].size;
+        console.log(fileArray);
+        console.log(filesName);
+        console.log(filesSize);
+        if (filesSize > maxSize) {
+            alert('单张图片大小不能超过2Mb');
+            $('#avator_file').val('');
+            return;
+        }
+        var formData = new FormData();
+        formData.append("uploadfile", fileArray['0'])
+        $.ajax({
+            url:"/admin/uploadImg",
+            data:formData,
+            type:"post",
+            processData:false, //不序列化data
+            contentType:false,
+            // ContentType:"application/json",
+            success:function (res) {
+                console.log(res)
+            }
+
+
+        })
     })
 })
