@@ -4,6 +4,7 @@ import (
     "io"
     "os"
     "os/exec"
+    "runtime"
 )
 
 // 文件是否存在
@@ -31,6 +32,12 @@ func FileRead(path string) (string, error) {
 
 //cmd 打开默认浏览器
 func OpenUrl(uri string) error  {
-    cmd := exec.Command("cmd", "/C", "start "+uri)
-    return cmd.Run()
+    sys := runtime.GOOS
+    if sys =="windows"{
+        cmd := exec.Command("cmd", "/C", "start "+uri)
+        return cmd.Run()
+    }else if sys =="darwin"{
+        return exec.Command("open", uri).Start()
+    }
+    return nil
 }
