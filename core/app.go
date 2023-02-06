@@ -12,8 +12,8 @@ func Run()  {
 	httpapp := iris.Default()
 	httpapp.Logger().SetLevel("error")
 	httpapp.Use(myMiddleware)
-	// 加载视图模板地址
-	httpapp.RegisterView(iris.HTML("./views", ".html"))
+	// 加载视图模板地址 Reload(true)重新加载本地文件更改,线上环境可以去掉，避免重复启动
+	httpapp.RegisterView(iris.HTML("./views", ".html").Reload(true))
 	//提供静态文件服务
 	httpapp.HandleDir("/static", "./static")
 	httpapp.HandleDir("/uploads", "./uploads")
