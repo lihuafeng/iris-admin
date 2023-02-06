@@ -16,7 +16,8 @@ func RouterHandler(app *iris.Application)  {
 	app.OnErrorCode(iris.StatusInternalServerError, internalServerError)
 
 	//路由
-	app.Get("/", new(IndexController).Index)
+	app.Get("/", new(HomeController).Home) //触屏站 首页
+
 	app.Get("/add", new(IndexController).Add)
 	app.Post("/save", new(IndexController).Save)
 	app.Post("/modify", new(IndexController).Modify)
