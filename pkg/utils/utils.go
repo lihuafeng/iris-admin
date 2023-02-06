@@ -3,6 +3,7 @@ package utils
 import (
     "io"
     "os"
+    "os/exec"
 )
 
 // 文件是否存在
@@ -26,4 +27,10 @@ func FileRead(path string) (string, error) {
     }
 
     return string(data), nil
+}
+
+//cmd 打开默认浏览器
+func OpenUrl(uri string) error  {
+    cmd := exec.Command("cmd", "/C", "start "+uri)
+    return cmd.Run()
 }
