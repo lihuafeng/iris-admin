@@ -51,3 +51,7 @@ func (index *IndexController) Modify(ctx iris.Context)  {
 	db.Db.Model(&cron).Update("status", status)
 	ctx.JSON(iris.Map{"code":0,"msg":"修改成功"})
 }
+
+func (index *IndexController) WsTest(ctx iris.Context)  {
+	ctx.View("ws_test.html")
+}

@@ -1,0 +1,29 @@
+.aui-row .img_icon{
+    position: relative;
+    z-index: 20;
+    top: 0;
+    height: 1.4rem;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    display: block;
+}
+.img_icon {
+    position: relative;
+    font-family:"aui_iconfont" !important;
+    font-size: 0.7rem;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.xq_icon{
+    background: url(/static/m/image/icon_dc.png?aa2ad301) no-repeat;
+    background-size: 100% 100%;
+}
+.zf_icon{
+    background: url(/static/m/image/icon_zf.png?aa2ad301) no-repeat;
+    background-size: 100% 100%
+}
+.tanpan_icon{
+    background: url(/static/m/image/icon_tp.png?aa2ad301) no-repeat;
+    background-size: 100% 100%
+}

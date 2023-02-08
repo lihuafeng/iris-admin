@@ -18,6 +18,8 @@ func RouterHandler(app *iris.Application)  {
 	//路由
 	app.Get("/", new(HomeController).Home) //触屏站 首页
 
+	app.Get("/ws_test", new(IndexController).WsTest)
+
 	app.Get("/add", new(IndexController).Add)
 	app.Post("/save", new(IndexController).Save)
 	app.Post("/modify", new(IndexController).Modify)

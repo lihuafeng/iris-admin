@@ -4,80 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>业主直租</title>
+    <title>房东直租-首页</title>
     <link rel="stylesheet" type="text/css" href="/static/m/css/aui.css" />
-    <link rel="stylesheet" type="text/css" href="/static/m/css/m_v1.css" />
-    <style>
-        .aui-bar{
-            line-height: 3.25rem;
-            font-size: 1.9rem;
-            background-color: #ffffff;
-        }
-        .aui-searchbar {
-            background: transparent;
-        }
-        .aui-bar-nav .aui-searchbar-input {
-            background-color: #ffffff;
-        }
-        .aui-bar-light .aui-searchbar-input {
-            background-color: #f5f5f5;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/m/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/static/m/css/index.css" />
 </head>
 <body>
-<!--footer-->
+<!--header-->
 {{ render "m/common/header.html"}}
-<div class="mod-header">
-    <img src="https://pic1.ajkimg.com/display/anjuke/b1080e0e44ff69dd1bca4fb6ec8e238b/1125x525n.jpg?sign=e1c21463ae45efd1092d7cf6e6203234&amp;t=1566748800" alt="房东直租好房">
-    <div class="packtxt-wrap">
-        <h2>房东直租好房</h2>
-        <p>优质业主直租房，高性价比之选。没有中介牵着你的鼻子走，只为让你住得更好。</p>
+<section class="aui-grid aui-margin-b-15">
+    <div class="aui-row">
+        <div class="aui-col-xs-4">
+            <div class="aui-badge">88</div>
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-grid-label">小区</div>
+        </div>
+        <div class="aui-col-xs-4">
+            <i class="aui-iconfont aui-icon-location"></i>
+            <div class="aui-grid-label">租房</div>
+        </div>
+        <div class="aui-col-xs-4">
+            <i class="aui-iconfont aui-icon-camera"></i>
+            <div class="aui-grid-label">探盘</div>
+        </div>
     </div>
-</div>
-<div class="content">
-    <div class="prop_list">
-        <a href="https://m.anjuke.com/zz/rent/1408886271-2/?shangquan_id=35990" class="rentLink " data-soj="rent_list_rec&amp;isauction=1" data-trace="">
-        <img class="" data-src="https://pic1.ajkimg.com/display/anjuke/120f59d0c50b3a0c74d84b015f6be3e6/240x180c.jpg?t=1&amp;srotate=1" src="https://pic1.ajkimg.com/display/anjuke/120f59d0c50b3a0c74d84b015f6be3e6/200x150c.jpg?t=1&amp;srotate=1">
-        <span class="info">
-                <span class="name">阳光城丽景湾(一期) 3室2厅1卫</span>
-                <span class="type">
-                    3室2厅&nbsp;&nbsp;89m²
-                </span>
-                <span class="address"><span class="addr-ab">新郑-龙湖阳光大道&nbsp;&nbsp;阳光城丽景湾(一期)</span><label class="price"><em>1400</em>元/月</label></span>
-                <span class="infotags">
-                    <em>整租</em>
-                    <em>城郊线</em>
-                    <em>朝南</em>
-                </span>
-        </span>
-        </a>
-        <a href="https://m.anjuke.com/zz/rent/6505725630-2/?shangquan_id=13767" class="rentLink " data-soj="rent_list_rec&amp;isauction=1" data-trace="">
-        <img class="" data-src="https://pic1.ajkimg.com/display/anjuke/29a4d5f9ff9ae54d1320896745888160/240x180c.jpg?t=1&amp;srotate=1" src="https://pic1.ajkimg.com/display/anjuke/29a4d5f9ff9ae54d1320896745888160/200x150c.jpg?t=1&amp;srotate=1">
-        <span class="info">
-                <span class="name">弘润幸福里 1室1厅1卫</span>
-                <span class="type">
-                    1室1厅&nbsp;&nbsp;43m²
-                </span>
-                <span class="address"><span class="addr-ab">金水-中医院&nbsp;&nbsp;弘润幸福里</span><label class="price"><em>1399</em>元/月</label></span>
-                <span class="infotags">
-                    <em>整租</em>
-                    <em>3号线</em>
-                    <em>朝西</em>
-                </span>
-            </span>
-        </a>
-    </div>
-    <div id="loading" class="loading">
-        <i></i>加载中...
-    </div>
-    <a class="more-btn" href="#">查看更多</a>
-</div>
-<div class="view-crumbV2">
-    <a href="#">业主直租</a>
-    &nbsp;&gt;&nbsp;
-    <a href="#"><h1 style="display: inline;font-weight: normal;font-size: 1.2rem;">郑州租房</h1></a>
-</div>
-<div class="describe">租房频道，为您提供最新最全的租房房源，实时更新房屋出租信息，包括经纪人租房，个人租房，想租房子就来安居客</div>
+</section>
 <!--footer-->
 {{ render "m/common/footer.html"}}
 </body>
@@ -85,6 +36,13 @@
 <script type="text/javascript">
     apiready = function(){
         api.parseTapmode();
+    }
+    var tab = document.querySelectorAll(".aui-tab-item");
+    for(var i in tab){
+        tab[i].onclick = function(e){
+            document.querySelector(".aui-tab-item.aui-active").classList.remove("aui-active");
+            e.target.classList.add("aui-active");
+        }
     }
 </script>
 </html>

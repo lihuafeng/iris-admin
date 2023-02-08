@@ -32,7 +32,7 @@ var version = "1.0.6"
  * @author deatil
  */
 func main() {
-	core.Run()
+	core.Run() //启动服務 http、websocket
 
     app := cli.NewApp()
     app.EnableBashCompletion = true
