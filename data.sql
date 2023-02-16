@@ -14,6 +14,7 @@ CREATE TABLE `cron` (
 
 
 
+
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT '',
