@@ -2,7 +2,7 @@ package Controller
 
 import (
 	"fmt"
-	"github.com/deatil/doak-cron/pkg/db"
+	"irisAdmin/pkg/db"
 	"github.com/google/uuid"
 	"github.com/kataras/iris/v12"
 	"time"

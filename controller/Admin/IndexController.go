@@ -3,7 +3,7 @@ package Admin
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/deatil/doak-cron/pkg/db"
+	"irisAdmin/pkg/db"
 	"github.com/kataras/iris/v12"
 )
 

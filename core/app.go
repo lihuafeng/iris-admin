@@ -1,9 +1,10 @@
 package core
 
 import (
+	"encoding/json"
 	"fmt"
-	Config "github.com/deatil/doak-cron/config"
-	Controller "github.com/deatil/doak-cron/controller"
+	Config "irisAdmin/config"
+	Controller "irisAdmin/controller"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/websocket"
 	"github.com/kataras/neffos"
@@ -178,4 +179,12 @@ func mainHandler(ctx iris.Context) {
 func myMiddleware(ctx iris.Context) {
 	ctx.Application().Logger().Infof("Runs before %s", ctx.Path())
 	ctx.Next()
+}
+// if the instance's Marshal and Unmarshal methods are missing.
+func (u *userMessage) Marshal() ([]byte, error) {
+	return json.Marshal(u)
+}
+
+func (u *userMessage) Unmarshal(b []byte) error {
+	return json.Unmarshal(b, u)
 }

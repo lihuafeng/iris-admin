@@ -3,8 +3,8 @@ package email
 import (
 	"context"
 	"fmt"
-	Config "github.com/deatil/doak-cron/config"
-	"github.com/deatil/doak-cron/pkg/cacheRedis"
+	Config "irisAdmin/config"
+	"irisAdmin/pkg/cacheRedis"
 	"io/ioutil"
 	"math/rand"
 	"net/smtp"

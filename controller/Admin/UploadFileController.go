@@ -2,7 +2,7 @@ package Admin
 
 import (
 	"fmt"
-	"github.com/deatil/doak-cron/pkg/email"
+	"irisAdmin/pkg/email"
 	"github.com/kataras/iris/v12"
 	"io"
 	"mime/multipart"

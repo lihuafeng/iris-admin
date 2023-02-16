@@ -10,9 +10,9 @@ import (
     "github.com/go-resty/resty/v2"
     jsoniter "github.com/json-iterator/go"
 
-    "github.com/deatil/doak-cron/pkg/cmd"
-    "github.com/deatil/doak-cron/pkg/utils"
-    "github.com/deatil/doak-cron/pkg/logger"
+    "irisAdmin/pkg/cmd"
+    "irisAdmin/pkg/utils"
+    "irisAdmin/pkg/logger"
 )
 
 // 数据

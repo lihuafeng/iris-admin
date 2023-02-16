@@ -2,9 +2,9 @@ package Controller
 
 import (
 	"github.com/dchest/captcha"
-	Config "github.com/deatil/doak-cron/config"
-	"github.com/deatil/doak-cron/controller/Admin"
-	"github.com/deatil/doak-cron/controller/Api"
+	Config "irisAdmin/config"
+	"irisAdmin/controller/Admin"
+	"irisAdmin/controller/Api"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/core/router"
 	"github.com/kataras/iris/v12/versioning"
