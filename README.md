@@ -8,12 +8,15 @@ iris框架做的后台系统
 *  iris框架做的后台管理系统
 
 ### 项目地址
+https://github.com/lihuafeng/iris-admin
+
 https://gitee.com/lhf2008/go-cron.git
+
 
 ### iris项目地址
 https://github.com/kataras/iris/tree/master/_examples
 
-###IRIS文档地址
+### IRIS文档地址
 https://www.topgoer.com/Iris/
 
 ### 使用方法
@@ -21,7 +24,7 @@ https://www.topgoer.com/Iris/
 2. 安装包，根目录执行
 ```go3wee
 go mod tidy
-```      
+```
 3. 根目录下执行
 ```go
 go run main.go
